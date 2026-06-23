@@ -311,39 +311,37 @@ brakeTorque = max(min(brakeTorque, LIM.MAX_BRAKE_TRQ), 0);
 
 | 시나리오 |                KPI |     결과값 |     목표값 |       점수 |
 | ---- | -----------------: | ------: | ------: | -------: |
-| A3   |   yawRateOvershoot |  1.2560 | 10.0000 | 4.00 / 4 |
-| A3   |    yawRateRiseTime |  0.1210 |  0.3000 | 4.00 / 4 |
-| A3   |    yawRateSettling |  0.4410 |  0.8000 | 4.00 / 4 |
-| A1   |        sideSlipMax |  2.1286 |  3.0000 | 6.00 / 6 |
-| A1   |            LTR_max |  0.6779 |  0.6000 | 4.35 / 5 |
-| A1   |      lateralDevMax |  1.0129 |  0.7000 | 2.21 / 4 |
+| A3   |   yawRateOvershoot |  1.2557 | 10.0000 | 4.00 / 4 |
+| A3   |    yawRateRiseTime |  0.1230 |  0.3000 | 4.00 / 4 |
+| A3   |    yawRateSettling |  0.4370 |  0.8000 | 4.00 / 4 |
+| A1   |        sideSlipMax |  2.1262 |  3.0000 | 6.00 / 6 |
+| A1   |            LTR_max |  0.6775 |  0.6000 | 4.35 / 5 |
+| A1   |      lateralDevMax |  1.0027 |  0.7000 | 2.27 / 4 |
 | A4   | understeerGradient |  0.0008 |  0.0030 | 5.00 / 5 |
 | A4   |        sideSlipMax |  1.1802 |  2.0000 | 5.00 / 5 |
 | A7   |        sideSlipMax |  1.3140 |  5.0000 | 8.00 / 8 |
 | A7   |            LTR_max |  0.2132 |  0.7000 | 7.00 / 7 |
-| B1   |   stoppingDistance | 47.6380 | 40.0000 | 3.09 / 5 |
+| B1   |   stoppingDistance | 47.6872 | 40.0000 | 3.08 / 5 |
 | B1   |         absSlipRMS |  0.7300 |  0.1000 | 0.00 / 5 |
-| D1   |        sideSlipMax |  2.1268 |  4.0000 | 4.00 / 4 |
-| D1   |            LTR_max |  0.6778 |  0.6000 | 1.74 / 2 |
-| D1   |      lateralDevMax |  1.0110 |  1.0000 | 1.98 / 2 |
+| D1   |        sideSlipMax |  2.1280 |  4.0000 | 4.00 / 4 |
+| D1   |            LTR_max |  0.6776 |  0.6000 | 1.74 / 2 |
+| D1   |      lateralDevMax |  1.0044 |  1.0000 | 1.99 / 2 |
 
 최종 정량 점수는 다음과 같다.
 
 ```text
-Quantitative Score = 60.37 / 70
+Quantitative Score = 60.44 / 70
 ```
 
 A3 yaw rate step 시나리오에서는 overshoot, rise time, settling time이 모두 목표를 만족하였다. 이는 yaw rate error 기반 PID 제어와 speed scheduling이 yaw rate tracking에 효과적으로 작동했음을 보여준다.
 
-A1 double lane change 시나리오에서는 sideSlipMax가 2.1286으로 목표값 3.0000을 만족하였다. lateralDevMax는 1.0129 m로 목표값 0.7000에는 도달하지 못했지만, 조향 제한 튜닝을 통해 목표값에 근접하도록 개선하였다. 다만 lateral deviation을 줄이는 과정에서 LTR_max가 0.6779로 증가하여 LTR 점수에서 일부 감점이 발생하였다.
+A1 double lane change 시나리오에서는 sideSlipMax가 2.1262로 목표값 3.0000을 만족하였다. lateralDevMax는 1.0027 m로 목표값 0.7000에는 도달하지 못했지만, 조향 제한 튜닝을 통해 목표값에 근접하도록 개선하였다. 다만 lateral deviation을 줄이는 과정에서 LTR_max가 0.6775로 증가하여 LTR 점수에서 일부 감점이 발생하였다.
 
-D1 통합 시나리오에서도 sideSlipMax는 2.1268로 목표값 4.0000을 만족하였고, lateralDevMax는 1.0110 m로 목표값 1.0000에 매우 근접하였다. 그러나 A1과 마찬가지로 LTR_max가 0.6778로 목표값보다 크게 나타나 일부 감점이 발생하였다.
-
-A7 brake-in-turn 시나리오에서는 sideSlipMax와 LTR_max가 모두 목표를 만족하였다. 이는 ESC yaw moment와 brake allocation이 제동 중 선회 안정성을 확보하는 데 효과적으로 작동했음을 의미한다.
-
-B1 straight braking 시나리오에서는 brake pulse를 적용하여 stopping distance를 47.6380 m까지 줄였고, 이에 따라 stoppingDistance에서 3.09/5점을 획득하였다. 그러나 각 휠의 slip ratio를 목표 slip 근처로 유지하는 closed-loop ABS 구조는 충분히 구현하지 못했기 때문에 absSlipRMS는 0.7300으로 목표값 0.1000을 만족하지 못하였다.
+D1 통합 시나리오에서도 sideSlipMax는 2.1280으로 목표값 4.0000을 만족하였고, lateralDevMax는 1.0044 m로 목표값 1.0000에 매우 근접하였다. 그러나 A1과 마찬가지로 LTR_max가 0.6776으로 목표값보다 크게 나타나 일부 감점이 발생하였다.
 
 A7 brake-in-turn 시나리오에서는 sideSlipMax가 1.3140, LTR_max가 0.2132로 모두 목표값을 만족하였다. 이는 ESC yaw moment와 brake allocation이 제동 중 선회 안정성을 확보하는 데 효과적으로 작동했음을 의미한다.
+
+B1 straight braking 시나리오에서는 brake pulse를 적용하여 stopping distance를 47.6872 m까지 줄였고, 이에 따라 stoppingDistance에서 3.08/5점을 획득하였다. 그러나 각 휠의 slip ratio를 목표 slip 근처로 유지하는 closed-loop ABS 구조는 충분히 구현하지 못했기 때문에 absSlipRMS는 0.7300으로 목표값 0.1000을 만족하지 못하였다.
 ---
 
 ## 5. 분석 및 한계
@@ -375,7 +373,7 @@ A7 brake-in-turn 시나리오에서도 sideSlipMax와 LTR_max가 모두 목표�
 
 본 프로젝트에서는 PID 기반 yaw rate tracking, slip angle 기반 ESC, PI 기반 종방향 제어, skyhook CDC, 그리고 actuator allocation을 포함하는 통합 섀시 제어기를 설계하였다. 최종 제어기는 A3, A4, A7 시나리오에서 대부분의 KPI를 만족하였고, A1 및 D1에서도 side slip 안정성과 경로 추종 성능을 개선하였다.
 
-B1 straight braking 시나리오에서는 brake pulse를 통해 stopping distance를 개선하였으나, 정밀한 ABS 제어가 부족하여 absSlipRMS 개선에는 한계가 있었다. 최종 정량 점수는 60.37/70으로 나타났으며, 전체적으로 차량 안정성 향상과 주행 성능 개선을 확인할 수 있었다.
+B1 straight braking 시나리오에서는 brake pulse를 통해 stopping distance를 개선하였으나, 정밀한 ABS 제어가 부족하여 absSlipRMS 개선에는 한계가 있었다. 최종 정량 점수는 60.44/70으로 나타났으며, 전체적으로 차량 안정성 향상과 주행 성능 개선을 확인할 수 있었다.
 
 ---
 
